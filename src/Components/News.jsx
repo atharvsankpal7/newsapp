@@ -32,7 +32,7 @@ export class News extends Component {
         }
     };
     async componentDidMount() {
-        let parsedData = await this.urlFetch();
+        let parsedData = await this.urlFetch(this.state.currentPage);
         this.utility.totalArticleCount = parsedData.totalResults;
         this.utility.totalPageCount =
             this.utility.totalArticleCount / this.utility.maxPageSize;
