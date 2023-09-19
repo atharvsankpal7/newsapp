@@ -64,6 +64,9 @@ export class News extends Component {
         });
     };
     render() {
+        if (this.state.articles == null) {
+            return <></>;
+        }
         if (this.state.loading === true) {
             return (
                 <>
