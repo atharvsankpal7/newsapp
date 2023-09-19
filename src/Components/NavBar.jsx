@@ -5,9 +5,11 @@ export class NavBar extends Component {
     render() {
         return (
             <>
-                <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                <nav className="navbar navbar-expand-lg bg-body-tertiary text-capitalize ">
                     <div className="container-fluid">
-                        <Link to="/">NewsApp</Link>
+                        <Link className="nav-link" to="/">
+                            NewsApp
+                        </Link>
                         <button
                             className="navbar-toggler"
                             type="button"
@@ -23,12 +25,45 @@ export class NavBar extends Component {
                             className="collapse navbar-collapse"
                             id="navbarSupportedContent"
                         >
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                                 <li className="nav-item mx-2">
-                                    <Link to="/">Home</Link>
+                                    <Link className="nav-link" to="/business">
+                                        {" "}
+                                        business
+                                    </Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link to="/about">About</Link>
+
+                                <li className="nav-item mx-2">
+                                    <Link
+                                        className="nav-link"
+                                        to="/entertainment"
+                                    >
+                                        entertainment
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item mx-2">
+                                    <Link className="nav-link" to="/health">
+                                        health
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item mx-2">
+                                    <Link className="nav-link" to="/science">
+                                        science
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item mx-2">
+                                    <Link className="nav-link" to="/sports">
+                                        sports
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item mx-2">
+                                    <Link className="nav-link" to="/technology">
+                                        technology
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

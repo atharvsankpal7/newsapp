@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
+import Spinner from "./Spinner";
+import PropTypes from "prop-types";
 export class News extends Component {
+    static defaultProps = {
+        country: "us",
+        category: "sports",
+        cache: {},
+    };
+    static propTypes = {
+        category: PropTypes.string,
+    };
     constructor() {
         super();
         this.state = {
@@ -13,21 +23,25 @@ export class News extends Component {
             totalArticleCount: 0,
             totalPageCount: 0,
             maxPageSize: 12,
-            cache: {},
         };
     }
     urlFetch = async (pageNumber) => {
-        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=cab1ea2a35c64b64a450bd6a2f4157ea&page=${pageNumber}&pageSize=${this.utility.maxPageSize}`;
+        this.setState({ loading: true });
+        let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=cab1ea2a35c64b64a450bd6a2f4157ea&page=${pageNumber}&pageSize=${this.utility.maxPageSize}`;
 
         // memozing the data fetching processing for current session
-        if (this.utility.cache[URL]) {
-            this.setState({ articles: this.utility.cache[URL].articles });
-            return this.utility.cache[URL];
+        if (this.props.cache[URL]) {
+            this.setState({ articles: this.props.cache[URL].articles });
+            this.setState({ loading: false });
+
+            return this.props.cache[URL];
         } else {
             let data = await fetch(URL);
             let parsedData = await data.json();
-            this.utility.cache[URL] = parsedData;
+            this.props.cache[URL] = parsedData;
             this.setState({ articles: parsedData.articles });
+            this.setState({ loading: false });
+
             return parsedData;
         }
     };
@@ -50,14 +64,19 @@ export class News extends Component {
         });
     };
     render() {
-        if (this.state.articles == null) {
-            return <></>;
+        if (this.state.loading === true) {
+            return (
+                <>
+                    <Spinner />
+                </>
+            );
         }
         return (
             <>
-                {}
-                <div className="container">
-                    <h2>Top Headlines</h2>
+                <div className="container ">
+                    <h1 className="text-center">
+                        <u>Top Headlines</u>
+                    </h1>
                     <div className="row">
                         {this.state.articles.map((e) => {
                             return (
@@ -76,7 +95,7 @@ export class News extends Component {
                 </div>
                 <div className="container page-navigation d-flex justify-content-between p-3">
                     <button
-                        disabled={this.state.currentPage == 1}
+                        disabled={this.state.currentPage === 1}
                         className="btn btn-dark"
                         onClick={this.handlePreviousBtnClick}
                     >
