@@ -64,10 +64,7 @@ export class News extends Component {
         });
     };
     render() {
-        if (this.state.articles == null) {
-            return <></>;
-        }
-        if (this.state.loading === true) {
+        if (this.state.loading === true || this.state.articles == null) {
             return (
                 <>
                     <Spinner />
@@ -76,30 +73,41 @@ export class News extends Component {
         }
         return (
             <>
-                <div className="container ">
+                <div
+                    className={`container text-${this.props.textColor} .bg-dark .bg-gradient`}
+                >
                     <h1 className="text-center">
                         <u>Top Headlines</u>
                     </h1>
                     <div className="row">
-                        {this.state.articles.map((e) => {
+                        {this.state.articles.map((e, index) => {
                             return (
-                                <div key={e.title} className="col-md-4">
+                                <div key={index} className="col-md-4">
                                     <NewsItem
                                         title={e.title.slice(0, 50)}
                                         description={e.description}
                                         imageUrl={e.urlToImage}
-                                        key={e.url}
                                         newsUrl={e.url}
+                                        colorMode={this.props.colorMode}
+                                        textColor={this.props.textColor}
                                     />
                                 </div>
                             );
                         })}
                     </div>
                 </div>
+                <hr
+                    style={{
+                        color:
+                            this.props.textColor === "dark"
+                                ? "black"
+                                : "white    ",
+                    }}
+                />
                 <div className="container page-navigation d-flex justify-content-between p-3">
                     <button
                         disabled={this.state.currentPage === 1}
-                        className="btn btn-dark"
+                        className={`btn btn-${this.props.colorMode} border-${this.props.textColor}`}
                         onClick={this.handlePreviousBtnClick}
                     >
                         <b>&larr; Previous</b>
@@ -109,7 +117,7 @@ export class News extends Component {
                             this.utility.totalPageCount <=
                             this.state.currentPage
                         }
-                        className="btn btn-dark"
+                        className={`btn btn-${this.props.colorMode} border-${this.props.textColor}`}
                         onClick={this.handleNextBtnClick}
                     >
                         <b>&rarr; Next</b>

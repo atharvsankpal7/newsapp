@@ -17,7 +17,10 @@ export class NewsItem extends Component {
                 ? "Click read more to see more about this news"
                 : description;
         return (
-            <div className="card mx-4 my-4" style={{ width: 18 + "rem" }}>
+            <div
+                className={`card mx-4 my-4  p-2 border border-${this.props.textColor} bg-${this.props.colorMode} text-${this.props.textColor}`}
+                style={{ width: 18 + "rem", borderRadius : 10+"px"}}
+            >
                 <img src={imageUrl} className="card-img-top" alt="bruh" />
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
@@ -28,7 +31,7 @@ export class NewsItem extends Component {
                     </p>
 
                     <Link
-                        className=" btn btn-primary"
+                        className=" btn btn-primary "
                         target="_blank"
                         to={newsUrl}
                     >

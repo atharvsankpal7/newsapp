@@ -4,19 +4,41 @@ import NavBar from "./Components/NavBar";
 import News from "./Components/News";
 
 export default class App extends Component {
+    constructor() {
+        super();
+        document.body.style.backgroundColor = "black";
+    }
+    toggleTheme = () => {
+        this.setState(() => ({
+            colorMode: this.state.colorMode === "light" ? "dark" : "light",
+            textColor: this.state.textColor === "dark" ? "light" : "dark",
+        }));
+
+        document.body.style.backgroundColor =
+            this.state.colorMode === "dark" ? "white" : "black";
+    };
     state = {
         newsCache: {},
+        colorMode: "dark",
+        textColor: "light",
     };
     render() {
         return (
             <Router>
-                <NavBar />
+                <NavBar
+                    textColor={this.state.textColor}
+                    colorMode={this.state.colorMode}
+                    toggleTheme={this.toggleTheme}
+                />
 
                 <Routes>
                     <Route
                         path="/"
                         element={<News key="general" />}
                         cache={this.state.newsCache}
+                        textColor={this.state.textColor}
+                        colorMode={this.state.colorMode}
+                        toggleTheme={this.toggleTheme}
                     />
 
                     <Route
@@ -26,6 +48,9 @@ export default class App extends Component {
                                 key="business"
                                 category={"business"}
                                 cache={this.state.newsCache}
+                                textColor={this.state.textColor}
+                                colorMode={this.state.colorMode}
+                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -36,6 +61,9 @@ export default class App extends Component {
                                 key="entertainment"
                                 category={"entertainment"}
                                 cache={this.state.newsCache}
+                                textColor={this.state.textColor}
+                                colorMode={this.state.colorMode}
+                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -46,6 +74,9 @@ export default class App extends Component {
                                 key="health"
                                 category={"health"}
                                 cache={this.state.newsCache}
+                                textColor={this.state.textColor}
+                                colorMode={this.state.colorMode}
+                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -56,6 +87,9 @@ export default class App extends Component {
                                 key="science"
                                 category={"science"}
                                 cache={this.state.newsCache}
+                                textColor={this.state.textColor}
+                                colorMode={this.state.colorMode}
+                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -66,6 +100,9 @@ export default class App extends Component {
                                 key="sports"
                                 category="sports"
                                 cache={this.state.newsCache}
+                                textColor={this.state.textColor}
+                                colorMode={this.state.colorMode}
+                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -76,6 +113,9 @@ export default class App extends Component {
                                 key="technology"
                                 category={"technology"}
                                 cache={this.state.newsCache}
+                                textColor={this.state.textColor}
+                                colorMode={this.state.colorMode}
+                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />

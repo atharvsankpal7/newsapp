@@ -5,7 +5,10 @@ export class NavBar extends Component {
     render() {
         return (
             <>
-                <nav className="navbar navbar-expand-lg bg-body-tertiary text-capitalize ">
+                <nav
+                    className={`navbar navbar-expand-lg bg-body-tertiary text-capitalize text-${this.props.textColor} `}
+                    data-bs-theme={`${this.props.colorMode}`}
+                >
                     <div className="container-fluid">
                         <Link className="nav-link" to="/">
                             NewsApp
@@ -66,6 +69,21 @@ export class NavBar extends Component {
                                     </Link>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                    <div className="container-fluid">
+                        <div
+                            className="d-flex flex-row-reverse collapse navbar-collapse"
+                            id="navbarSupportedContent"
+                        >
+                            <button
+                                id="btn-mode-toogle"
+                                className={`btn btn-outline-${this.props.textColor}    `}
+                                onClick={this.props.toggleTheme}
+                            >
+                                {`${this.props.textColor} `}
+                                Mode
+                            </button>
                         </div>
                     </div>
                 </nav>
