@@ -97,7 +97,7 @@ export class News extends Component {
                         })}
                     </div>
                 </div>
-                <hr
+                <hr 
                     style={{
                         color:
                             this.props.textColor === "dark"
