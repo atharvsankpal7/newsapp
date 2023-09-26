@@ -77,7 +77,7 @@ export class News extends Component {
                     className={`container text-${this.props.textColor} .bg-dark .bg-gradient`}
                 >
                     <h1 className="text-center">
-                        <u>Top Headlines</u>
+                        <u style={{textTransform:"capitalize"}}>  {this.props.category}</u>
                     </h1>
                     <div className="row">
                         {this.state.articles.map((e, index) => {
@@ -90,6 +90,7 @@ export class News extends Component {
                                         newsUrl={e.url}
                                         colorMode={this.props.colorMode}
                                         textColor={this.props.textColor}
+                                        author = {e.author}
                                     />
                                 </div>
                             );

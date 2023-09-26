@@ -22,6 +22,7 @@ export default class App extends Component {
         colorMode: "dark",
         textColor: "light",
     };
+  
     render() {
         return (
             <Router>
@@ -34,11 +35,15 @@ export default class App extends Component {
                 <Routes>
                     <Route
                         path="/"
-                        element={<News key="general" />}
-                        cache={this.state.newsCache}
-                        textColor={this.state.textColor}
-                        colorMode={this.state.colorMode}
-                        toggleTheme={this.toggleTheme}
+                        element={
+                            <News
+                                key="general"
+                                category="general"
+                                cache={this.state.newsCache}
+                                textColor={this.state.textColor}
+                                colorMode={this.state.colorMode}
+                            />
+                        }
                     />
 
                     <Route
@@ -50,7 +55,6 @@ export default class App extends Component {
                                 cache={this.state.newsCache}
                                 textColor={this.state.textColor}
                                 colorMode={this.state.colorMode}
-                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -63,7 +67,6 @@ export default class App extends Component {
                                 cache={this.state.newsCache}
                                 textColor={this.state.textColor}
                                 colorMode={this.state.colorMode}
-                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -76,7 +79,6 @@ export default class App extends Component {
                                 cache={this.state.newsCache}
                                 textColor={this.state.textColor}
                                 colorMode={this.state.colorMode}
-                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -89,7 +91,6 @@ export default class App extends Component {
                                 cache={this.state.newsCache}
                                 textColor={this.state.textColor}
                                 colorMode={this.state.colorMode}
-                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -102,7 +103,6 @@ export default class App extends Component {
                                 cache={this.state.newsCache}
                                 textColor={this.state.textColor}
                                 colorMode={this.state.colorMode}
-                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
@@ -115,7 +115,6 @@ export default class App extends Component {
                                 cache={this.state.newsCache}
                                 textColor={this.state.textColor}
                                 colorMode={this.state.colorMode}
-                                toggleTheme={this.toggleTheme}
                             />
                         }
                     />
